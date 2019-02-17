@@ -4,7 +4,7 @@ interface IState {
   Splitted: null | React.FunctionComponent;
 }
 
-const withSplitting = (getComponent: () => Promise<typeof import('src/SplitMe')>) => {
+const withSplitting = (getComponent: () => Promise<typeof import('pages/Home')>) => {
   return class extends React.Component<any, IState> {
     constructor(props: any) {
       super(props);
