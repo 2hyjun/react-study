@@ -1,32 +1,33 @@
 import * as React from 'react';
 import './App.css';
+import withSplitting from './withSplitting';
+
+const SplitMe = withSplitting(() => import('./SplitMe'));
 
 interface IState {
-  SplitMe: null | React.FunctionComponent;
+  visible: boolean;
 }
 
 class App extends React.Component<any, IState> {
   constructor(props: any) {
     super(props);
     this.state = {
-      SplitMe: null,
+      visible: false,
     };
   }
 
   handleClick = () => {
-    import('src/SplitMe').then(({ default: SplitMe }) => {
-      this.setState({
-        SplitMe,
-      });
+    this.setState({
+      visible: true,
     });
   };
 
   public render() {
-    const { SplitMe } = this.state;
+    const { visible } = this.state;
     return (
       <div>
         <button onClick={this.handleClick}>Click Me</button>
-        {SplitMe && <SplitMe />}
+        {visible && <SplitMe />}
       </div>
     );
   }
